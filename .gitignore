@@ -9,6 +9,11 @@ Hybrid RAG with Azure Data Explorer/download/docs/
 Hybrid RAG with Azure Data Explorer/data/*.*
 Hybrid RAG with Azure Data Explorer/data/processed/embeddings.csv
 Hybrid RAG with Azure Data Explorer/data/processed/entities.csv
+.env
+__pycache__/
+.promptflow/*
+!.promptflow/flow.tools.json
+.runs/
 
 # User-specific files
 *.rsuser

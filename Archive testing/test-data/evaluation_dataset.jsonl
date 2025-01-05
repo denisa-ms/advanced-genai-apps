@@ -7,7 +7,7 @@
 {"question": "What is the floor area for Floor Area? ", "ground_truth": "80 square feet"}
 {"question": "What is the material for TrailBlaze Hiking Pants", "ground_truth": "Made of high-quality nylon fabric"}
 {"question": "What color does TrailBlaze Hiking Pants come in", "ground_truth": "Khaki"}
-{"question": "Cant he warrenty for TrailBlaze pants be transfered? ", "ground_truth": "he warranty is non-transferable and applies only to the original purchaser of the TrailBlaze Hiking Pants. It is valid only when the product is purchased from an authorized retailer."}
-{"question": "How long are the TrailBlaze pants under warrenty for? ", "ground_truth": " The TrailBlaze Hiking Pants are backed by a 1-year limited warranty from the date of purchase."}
+{"question": "Cant he warranty for TrailBlaze pants be transfered? ", "ground_truth": "he warranty is non-transferable and applies only to the original purchaser of the TrailBlaze Hiking Pants. It is valid only when the product is purchased from an authorized retailer."}
+{"question": "How long are the TrailBlaze pants under warranty for? ", "ground_truth": " The TrailBlaze Hiking Pants are backed by a 1-year limited warranty from the date of purchase."}
 {"question": "What is the material for PowerBurner Camping Stove? ", "ground_truth": "Stainless Steel"}
 {"question": "France is in Europe", "ground_truth": "Sorry, I can only truth questions related to outdoor/camping gear and equipment"}

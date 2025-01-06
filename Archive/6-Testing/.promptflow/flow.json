@@ -21,7 +21,7 @@
         "python_requirements_txt": "../requirements.txt"
     },
     "type": "chat",
-    "name": "n7_testing",
+    "name": "n6_testing",
     "inputs": {
         "question": {
             "type": "string",

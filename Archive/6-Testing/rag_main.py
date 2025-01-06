@@ -26,67 +26,37 @@ from azure.search.documents.indexes.models import (
 )
 import yaml
 
-load_dotenv()
-# Configure environment variables
-service_endpoint = os.getenv("AZURE_SEARCH_SERVICE_ENDPOINT")
-key = os.getenv("AZURE_SEARCH_ADMIN_KEY")
-index_name = os.getenv("AZURE_SEARCH_INDEX")
-
-AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
-AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
-AZURE_OPENAI_GPT4_DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_GPT4_DEPLOYMENT_NAME")
-AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME")
-AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
-azure_openai_embedding_dimensions = 1536
-
-# load agent configuration (variant) from the YAML file
-def load_agent_configuration(agent_folder: str, agent_config_file: str) -> dict:
-
-    # add check for input arguments
-    if not agent_folder or not agent_config_file:
-        raise ValueError("Agent folder and agent config file are required.")
-
-    # Get the directory of the project root
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-    # Construct the absolute path to the configuration file
-    config_path = os.path.join(project_root, agent_folder, agent_config_file)
-
-    # Load the configuration file
-    with open(config_path, 'r') as file:
-        try:
-            # Parse the YAML content
-            config_data = yaml.safe_load(file)
-            # Output the resulting dictionary
-            # print(config_data)
-        except yaml.YAMLError as error:
-            print(f"Error parsing agent config YAML file: {error}")
-            raise error
-
-    return config_data
 
 class RAG:
     def __init__(self) -> None:
+        load_dotenv()
+        # Configure environment variables
+        self.service_endpoint = os.getenv("AZURE_SEARCH_SERVICE_ENDPOINT")
+        self.key = os.getenv("AZURE_SEARCH_ADMIN_KEY")
+        self.index_name = os.getenv("AZURE_SEARCH_INDEX")
+
+        self.AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
+        self.AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
+        self.AZURE_OPENAI_GPT4_DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_GPT4_DEPLOYMENT_NAME")
+        self.AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME")
+        self.AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
+        
         self.aoai_client = AzureOpenAI(
-            azure_endpoint = AZURE_OPENAI_ENDPOINT, 
-            api_key=AZURE_OPENAI_API_KEY,  
-            api_version=AZURE_OPENAI_API_VERSION
+            azure_endpoint = self.AZURE_OPENAI_ENDPOINT, 
+            api_key=self.AZURE_OPENAI_API_KEY,  
+            api_version=self.AZURE_OPENAI_API_VERSION
         )
 
         self.embeddings = AzureOpenAIEmbeddings(
-            azure_deployment=AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME,
-            azure_endpoint=AZURE_OPENAI_ENDPOINT,
-            openai_api_version=AZURE_OPENAI_API_VERSION,
-            api_key=AZURE_OPENAI_API_KEY
+            azure_deployment=self.AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME,
+            azure_endpoint=self.AZURE_OPENAI_ENDPOINT,
+            openai_api_version=self.AZURE_OPENAI_API_VERSION,
+            api_key=self.AZURE_OPENAI_API_KEY
         )
         
-        credential = AzureKeyCredential(key)
-        self.aisearch = SearchIndexClient(endpoint=service_endpoint, credential=credential)
+        credential = AzureKeyCredential(self.key)
+        self.aisearch = SearchIndexClient(endpoint=self.service_endpoint, credential=credential)
             
-        self.rag_config = load_agent_configuration("./7-Testing/", "rag_agent_config.yaml")            
-          
-
-
     def __call__(self,question: str = " ") -> str:
         """>>>RAG Flow entry function."""
         response = self.chat(question)
@@ -109,7 +79,7 @@ class RAG:
             }
         ]
         response = self.aoai_client.chat.completions.create(
-            model=AZURE_OPENAI_GPT4_DEPLOYMENT_NAME,
+            model=self.AZURE_OPENAI_GPT4_DEPLOYMENT_NAME,
             messages = messages,
             temperature=0.7,
             max_tokens=800,
@@ -121,18 +91,18 @@ class RAG:
         return response.choices[0].message.content
 
     @retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6))
-    # Function to generate embeddings for title and content fields, also used for query embeddings
     def calc_embeddings(self, text):
         # model = "deployment_name"
-        embeddings = self.aoai_client.embeddings.create(input = [text], model=AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME).data[0].embedding
+        embeddings = self.aoai_client.embeddings.create(input = [text], model=self.AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME).data[0].embedding
         return embeddings
 
     def do_search(self, query):
         fields = "embedding"
         embedding = self.calc_embeddings(query)
         vector_query = VectorizedQuery(vector=embedding, k_nearest_neighbors=3, fields=fields)
-    
-        results = self.search_client.search(  
+
+        print("$$$$" + str(type(self.aisearch)))
+        results = self.aisearch.search(  
             search_text=None,  
             vector_queries= [vector_query],
             select=["content"],
@@ -144,7 +114,7 @@ class RAG:
             answer = answer + result['content']
         return answer
 
-    def chat(self, session_id, question, **kwargs):
+    def chat(self, question, **kwargs):
         answers = self.do_search(question)
         response = self.call_openAI(question, answers)
         return response

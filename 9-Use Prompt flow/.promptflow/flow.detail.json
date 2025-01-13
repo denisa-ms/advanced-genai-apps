@@ -1,0 +1,202 @@
+{
+  "flow_runs": [
+    {
+      "run_id": "6050c55f-6d4a-4cb4-9107-fe2a68b0c02f_0",
+      "status": "Completed",
+      "error": null,
+      "inputs": {
+        "text": "Java Hello World!",
+        "deployment_name": "gpt-4o"
+      },
+      "output": {
+        "output": "```java\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n```"
+      },
+      "metrics": null,
+      "request": null,
+      "parent_run_id": "6050c55f-6d4a-4cb4-9107-fe2a68b0c02f",
+      "root_run_id": "6050c55f-6d4a-4cb4-9107-fe2a68b0c02f",
+      "source_run_id": null,
+      "flow_id": "default_flow_id",
+      "start_time": "2025-01-09T11:45:38.906229Z",
+      "end_time": "2025-01-09T11:45:40.305821Z",
+      "index": 0,
+      "api_calls": [
+        {
+          "name": "write_simple_program",
+          "type": "Flow",
+          "inputs": {
+            "text": "Java Hello World!",
+            "deployment_name": "gpt-4o"
+          },
+          "output": {
+            "output": "```java\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n```"
+          },
+          "start_time": 1736415938.906229,
+          "end_time": 1736415940.305821,
+          "error": null,
+          "children": [
+            {
+              "name": "load_prompt",
+              "type": "Function",
+              "inputs": {
+                "jinja2_template": "prompt.jinja2",
+                "text": "Java Hello World!"
+              },
+              "output": "system: \nWrite a simple Java Hello World! program.\nOutput code only.",
+              "start_time": 1736415938.906229,
+              "end_time": 1736415938.906229,
+              "error": null,
+              "children": [],
+              "node_name": null,
+              "parent_id": "6e5a16f1-f05e-4db0-8139-7ff463b566a1",
+              "id": "313b22e3-03b3-445d-ad77-cce8bea1ba01",
+              "function": "load_prompt",
+              "system_metrics": {}
+            },
+            {
+              "name": "my_llm_tool",
+              "type": "Function",
+              "inputs": {
+                "prompt": "system: \nWrite a simple Java Hello World! program.\nOutput code only.",
+                "deployment_name": "gpt-4o",
+                "max_tokens": 120
+              },
+              "output": "```java\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n```",
+              "start_time": 1736415938.906229,
+              "end_time": 1736415940.305821,
+              "error": null,
+              "children": [
+                {
+                  "name": "openai_chat",
+                  "type": "LLM",
+                  "inputs": {
+                    "messages": [
+                      {
+                        "content": "system: \nWrite a simple Java Hello World! program.\nOutput code only.",
+                        "role": "system"
+                      }
+                    ],
+                    "model": "gpt-4o",
+                    "max_tokens": 120,
+                    "temperature": 1.0,
+                    "top_p": 1.0,
+                    "n": 1
+                  },
+                  "output": {
+                    "id": "chatcmpl-AnlGme46q0PGG2OdrvbvP4Z5M8phz",
+                    "choices": [
+                      {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                          "content": "```java\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n```",
+                          "refusal": null,
+                          "role": "assistant",
+                          "audio": null,
+                          "function_call": null,
+                          "tool_calls": null
+                        },
+                        "content_filter_results": {
+                          "hate": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "self_harm": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "sexual": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "violence": {
+                            "filtered": false,
+                            "severity": "safe"
+                          }
+                        }
+                      }
+                    ],
+                    "created": 1736423140,
+                    "model": "gpt-4o-2024-05-13",
+                    "object": "chat.completion",
+                    "service_tier": null,
+                    "system_fingerprint": "fp_f3927aa00d",
+                    "usage": {
+                      "completion_tokens": 31,
+                      "prompt_tokens": 23,
+                      "total_tokens": 54,
+                      "completion_tokens_details": {
+                        "accepted_prediction_tokens": 0,
+                        "audio_tokens": 0,
+                        "reasoning_tokens": 0,
+                        "rejected_prediction_tokens": 0
+                      },
+                      "prompt_tokens_details": {
+                        "audio_tokens": 0,
+                        "cached_tokens": 0
+                      }
+                    },
+                    "prompt_filter_results": [
+                      {
+                        "prompt_index": 0,
+                        "content_filter_results": {}
+                      }
+                    ]
+                  },
+                  "start_time": 1736415938.955925,
+                  "end_time": 1736415940.305821,
+                  "error": null,
+                  "children": [],
+                  "node_name": null,
+                  "parent_id": "eab647e3-f0dd-404a-9086-e8a3379261fa",
+                  "id": "dccb2cba-44a3-4bc9-a7b7-16dd6ee3fabb",
+                  "function": "openai.resources.chat.completions.Completions.create",
+                  "system_metrics": {
+                    "completion_tokens": 31,
+                    "prompt_tokens": 23,
+                    "total_tokens": 54
+                  }
+                }
+              ],
+              "node_name": null,
+              "parent_id": "6e5a16f1-f05e-4db0-8139-7ff463b566a1",
+              "id": "eab647e3-f0dd-404a-9086-e8a3379261fa",
+              "function": "my_llm_tool",
+              "system_metrics": {
+                "completion_tokens": 31,
+                "prompt_tokens": 23,
+                "total_tokens": 54
+              }
+            }
+          ],
+          "node_name": null,
+          "parent_id": "",
+          "id": "6e5a16f1-f05e-4db0-8139-7ff463b566a1",
+          "function": "write_simple_program",
+          "system_metrics": {
+            "completion_tokens": 31,
+            "prompt_tokens": 23,
+            "total_tokens": 54
+          }
+        }
+      ],
+      "name": "",
+      "description": "",
+      "tags": null,
+      "system_metrics": {
+        "completion_tokens": 31,
+        "prompt_tokens": 23,
+        "total_tokens": 54,
+        "duration": 1.399592
+      },
+      "result": {
+        "output": "```java\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n```"
+      },
+      "upload_metrics": false,
+      "otel_trace_id": "0xfc0166b5c1a0167cf6f3e485e18e5479",
+      "message_format": "basic"
+    }
+  ],
+  "node_runs": []
+}

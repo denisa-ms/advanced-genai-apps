@@ -1,10 +1,10 @@
 {
   "package": {},
   "code": {
-    "basic.prompty": {
+    "eval_code_quality.prompty": {
       "type": "llm",
       "inputs": {
-        "question": {
+        "code": {
           "type": [
             "string"
           ]

@@ -1,0 +1,29 @@
+{
+    "function": "write_simple_program",
+    "$schema": "https://azuremlschemas.azureedge.net/promptflow/latest/flow.schema.json",
+    "entry": "code:write_simple_program",
+    "environment": {
+        "python_requirements_txt": "../requirements.txt"
+    },
+    "sample": {
+        "inputs": {
+            "text": "Java Hello World!"
+        }
+    },
+    "name": "n9_use_prompt_flow",
+    "inputs": {
+        "text": {
+            "type": "string",
+            "default": "Hello World!"
+        },
+        "deployment_name": {
+            "type": "string",
+            "default": "gpt-4o"
+        }
+    },
+    "outputs": {
+        "output": {
+            "type": "string"
+        }
+    }
+}

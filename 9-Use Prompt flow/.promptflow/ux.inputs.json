@@ -1,0 +1,14 @@
+{
+  "chat_list": [
+    {
+      "name": "default",
+      "inputs": {
+        "text": "write a go program that prints hello world"
+      }
+    }
+  ],
+  "prompty_chat_list": [],
+  "init": {
+    "flow.flex.yaml": {}
+  }
+}

@@ -1,4 +1,4 @@
-test_id,test_type,query,answer,context
+query_id,test_type,query,answer,context
 1,coherence,What is the capital of France?,Paris is the capital of France.,
 2,groundedness,,Paris is the capital of France.,"""France, a country in Western Europe, is known for its rich history and cultural heritage.""
     ""The city of Paris, located in the northern part of the country, serves as its capital.""

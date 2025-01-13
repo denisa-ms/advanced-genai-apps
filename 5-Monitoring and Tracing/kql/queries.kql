@@ -1,0 +1,17 @@
+traces 
+| where message startswith "Automatic testing" 
+| project customDimensionsObject =  parse_json(customDimensions)
+| extend llm_version = customDimensionsObject.llm_version
+| extend llm_model = customDimensionsObject.llm_model
+| extend temperature = customDimensionsObject.temperature
+| extend query_id = customDimensionsObject.query_id
+| extend prompt_name = customDimensionsObject.prompt_name
+| extend test_type = customDimensionsObject.test_type
+| extend score = customDimensionsObject.score
+| where isnotnull(test_type)
+
+
+
+
+
+

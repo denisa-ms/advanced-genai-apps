@@ -1,0 +1,10 @@
+query_id,query
+1,What is Microsoft Fabric?
+2,"How does Microsoft Fabric's architecture facilitate data integration and transformation across different data sources, and what are the implications for data consistency and reliability?"
+3,"Describe the role of Data Pipelines in Microsoft Fabric. How do they interact with other components such as Data Lakes and Warehouses, and what are the key considerations for optimizing their performance and efficiency?"
+4,"Explain the concept of Dataflow in Microsoft Fabric. How does it enhance data processing capabilities, and what are the potential challenges and best practices for managing complex dataflows?"
+5,"Analyze the security measures provided in Microsoft Fabric for data engineering. How do these measures ensure data privacy and compliance with regulations, and what additional steps can be taken to further secure the data?"
+6,"Discuss the significance of metadata management in Microsoft Fabric. How does effective metadata management impact data quality, governance, and discoverability within an organization?"
+7,"Evaluate the scalability features of Microsoft Fabric. What strategies and tools are recommended for handling large-scale data processing, and how do these features address potential bottlenecks and performance issues?"
+8,"How does Microsoft Fabric support real-time data processing and analytics? Describe the mechanisms and tools involved, and analyze how they integrate with batch processing workflows."
+9,"Critically assess the role of artificial intelligence and machine learning capabilities in Microsoft Fabric's data engineering environment. How can these capabilities be leveraged to improve data processing workflows, and what are the limitations and ethical considerations to be aware of?"

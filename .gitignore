@@ -14,6 +14,7 @@ __pycache__/
 .promptflow/*
 !.promptflow/flow.tools.json
 .runs/
+app_insights_connect.txt
 
 # User-specific files
 *.rsuser

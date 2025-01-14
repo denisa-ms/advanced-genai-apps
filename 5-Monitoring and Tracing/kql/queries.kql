@@ -1,16 +1,68 @@
+//app insigts - logs
 traces 
-| where message startswith "Automatic testing" 
-| project customDimensionsObject =  parse_json(customDimensions)
+| where message startswith "Automatic testing"
+| extend customDimensionsObject =  parse_json(customDimensions)
+| extend test_date = format_datetime(timestamp, "yyyy-MM-dd")
+| extend test_run_id = tostring(customDimensionsObject.test_run_id)
 | extend llm_version = customDimensionsObject.llm_version
 | extend llm_model = customDimensionsObject.llm_model
 | extend temperature = customDimensionsObject.temperature
-| extend query_id = customDimensionsObject.query_id
-| extend prompt_name = customDimensionsObject.prompt_name
-| extend test_type = customDimensionsObject.test_type
-| extend score = customDimensionsObject.score
-| where isnotnull(test_type)
+| extend query_id = toint(customDimensionsObject.query_id)
+| extend prompt_name = tostring(customDimensionsObject.prompt_name)
+| extend coherence = toreal(customDimensionsObject.coherence)
+| extend groundedness = toreal(customDimensionsObject.groundedness)
+| extend relevance = toreal(customDimensionsObject.relevance)
+| where isnotnull(coherence)
 
 
+// graph ADX
+traces 
+| where message startswith "Automatic testing"
+| extend customDimensionsObject =  parse_json(customDimensions)
+| extend test_date = format_datetime(timestamp, "yyyy-MM-dd")
+| extend test_run_id = tostring(customDimensionsObject.test_run_id)
+| extend llm_version = customDimensionsObject.llm_version
+| extend llm_model = customDimensionsObject.llm_model
+| extend temperature = customDimensionsObject.temperature
+| extend query_id = toint(customDimensionsObject.query_id)
+| extend prompt_name = tostring(customDimensionsObject.prompt_name)
+| extend coherence = toreal(customDimensionsObject.coherence)
+| extend groundedness = toreal(customDimensionsObject.groundedness)
+| extend relevance = toreal(customDimensionsObject.relevance)
+| where isnotnull(coherence)
+| summarize 
+    AvgCoherence = avg(coherence),
+    AvgGroundedness = avg(groundedness), 
+    AvgRelevance = avg(relevance)
+by 
+    test_run_id,
+    prompt_name
+
+
+// graph ADX
+traces 
+| where message startswith "Automatic testing"
+| extend customDimensionsObject =  parse_json(customDimensions)
+| extend test_date = format_datetime(timestamp, "yyyy-MM-dd")
+| extend test_run_id = tostring(customDimensionsObject.test_run_id)
+| extend llm_version = customDimensionsObject.llm_version
+| extend llm_model = customDimensionsObject.llm_model
+| extend temperature = customDimensionsObject.temperature
+| extend query_id = toint(customDimensionsObject.query_id)
+| extend prompt_name = tostring(customDimensionsObject.prompt_name)
+| extend coherence = toreal(customDimensionsObject.coherence)
+| extend groundedness = toreal(customDimensionsObject.groundedness)
+| extend relevance = toreal(customDimensionsObject.relevance)
+| where isnotnull(coherence)
+| summarize 
+    AvgCoherence = avg(coherence),
+    AvgGroundedness = avg(groundedness), 
+    AvgRelevance = avg(relevance)
+by 
+    test_run_id,
+    prompt_name
+|sort by prompt_name
+| render columnchart  
 
 
 

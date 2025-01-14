@@ -1,0 +1,15 @@
+//app insights - logs
+traces 
+| where message startswith "Automatic testing"
+| extend customDimensionsObject =  parse_json(customDimensions)
+| extend test_date = format_datetime(timestamp, "yyyy-MM-dd")
+| extend test_run_id = tostring(customDimensionsObject.test_run_id)
+| extend llm_version = customDimensionsObject.llm_version
+| extend llm_model = customDimensionsObject.llm_model
+| extend temperature = customDimensionsObject.temperature
+| extend query_id = toint(customDimensionsObject.query_id)
+| extend prompt_name = tostring(customDimensionsObject.prompt_name)
+| extend coherence = toreal(customDimensionsObject.coherence)
+| extend groundedness = toreal(customDimensionsObject.groundedness)
+| extend relevance = toreal(customDimensionsObject.relevance)
+| where isnotnull(coherence)

@@ -1,8 +1,9 @@
-//app insigts - logs
-traces 
-| where message startswith "Automatic testing"
-| extend customDimensionsObject =  parse_json(customDimensions)
-| extend test_date = format_datetime(timestamp, "yyyy-MM-dd")
+// see 1 record per row
+RawLogs
+| extend records =  parse_json(records)
+| extend item = (records)
+| mv-expand item
+| extend customDimensionsObject =  parse_json(item.Properties)
 | extend test_run_id = tostring(customDimensionsObject.test_run_id)
 | extend llm_version = customDimensionsObject.llm_version
 | extend llm_model = customDimensionsObject.llm_model
@@ -12,14 +13,14 @@ traces
 | extend coherence = toreal(customDimensionsObject.coherence)
 | extend groundedness = toreal(customDimensionsObject.groundedness)
 | extend relevance = toreal(customDimensionsObject.relevance)
-| where isnotnull(coherence)
 
 
-// graph ADX
-traces 
-| where message startswith "Automatic testing"
-| extend customDimensionsObject =  parse_json(customDimensions)
-| extend test_date = format_datetime(timestamp, "yyyy-MM-dd")
+// graph 
+RawLogs
+| extend records =  parse_json(records)
+| extend item = (records)
+| mv-expand item
+| extend customDimensionsObject =  parse_json(item.Properties)
 | extend test_run_id = tostring(customDimensionsObject.test_run_id)
 | extend llm_version = customDimensionsObject.llm_version
 | extend llm_model = customDimensionsObject.llm_model
@@ -29,7 +30,6 @@ traces
 | extend coherence = toreal(customDimensionsObject.coherence)
 | extend groundedness = toreal(customDimensionsObject.groundedness)
 | extend relevance = toreal(customDimensionsObject.relevance)
-| where isnotnull(coherence)
 | summarize 
     AvgCoherence = avg(coherence),
     AvgGroundedness = avg(groundedness), 
@@ -40,10 +40,11 @@ by
 
 
 // graph ADX
-traces 
-| where message startswith "Automatic testing"
-| extend customDimensionsObject =  parse_json(customDimensions)
-| extend test_date = format_datetime(timestamp, "yyyy-MM-dd")
+RawLogs
+| extend records =  parse_json(records)
+| extend item = (records)
+| mv-expand item
+| extend customDimensionsObject =  parse_json(item.Properties)
 | extend test_run_id = tostring(customDimensionsObject.test_run_id)
 | extend llm_version = customDimensionsObject.llm_version
 | extend llm_model = customDimensionsObject.llm_model
@@ -53,7 +54,6 @@ traces
 | extend coherence = toreal(customDimensionsObject.coherence)
 | extend groundedness = toreal(customDimensionsObject.groundedness)
 | extend relevance = toreal(customDimensionsObject.relevance)
-| where isnotnull(coherence)
 | summarize 
     AvgCoherence = avg(coherence),
     AvgGroundedness = avg(groundedness), 

@@ -14,12 +14,8 @@ In order to run these code samples you MUST have the following:
 - Clone this repository to your local machine and open a terminal in the cloned directory.
 
 ## Visual Studio Code
-- Windows
-    - Install [Visual Studio Code](https://code.visualstudio.com/)
-- Linux
-    - Install [Visual Studio Code](https://code.visualstudio.com/)
-- Mac
-    - Install [Visual Studio Code](https://code.visualstudio.com/)
+- Install [Visual Studio Code](https://code.visualstudio.com/)
+
 
 ## Python
 - Windows
@@ -68,25 +64,40 @@ In order to run these code samples you MUST have the following:
 # AI studio demo credentials
 AZURE_SEARCH_SERVICE_ENDPOINT="<your-search-service-endpoint>"
 AZURE_SEARCH_ADMIN_KEY="<your-search-admin-key>"
-AZURE_SEARCH_INDEX="product-info"
+AZURE_SEARCH_INDEX="<your-search-index>"
 BLOB_CONNECTION_STRING="<your-blob-connection-string>"
-BLOB_CONTAINER_NAME="product-data"
+BLOB_CONTAINER_NAME="<your-blob-container-name>"
 
 AZURE_SUBSCRIPTION_ID = "<your-azure-subscription-id>"
-AZURE_AISTUDIO_PROJECT_RESOURCE_GROUP = "<your-azureaistudio-resource-group>"
-AZURE_AISTUDIO_PROJECT_NAME = "<your-azureaistudio-project-name>"
-AISTUDIO_AZURE_OPENAI_ENDPOINT="<your-openai-endpoint>"
-AISTUDIO_AZURE_OPENAI_KEY="<your azure ai services key>"
+AZURE_AISTUDIO_PROJECT_RESOURCE_GROUP = "<your-azure-resource-group>"
+AZURE_AISTUDIO_PROJECT_NAME = "<your-azure-project-name>"
+AISTUDIO_AZURE_OPENAI_ENDPOINT="<your-azure-openai-endpoint>"
+AISTUDIO_AZURE_OPENAI_KEY="<your-azure-openai-key>"
 AISTUDIO_OPENAI_GPT3516_DEPLOYMENT_NAME="gpt-35-turbo-16k"
 AISTUDIO_OPENAI_GPT4_DEPLOYMENT_NAME="gpt-4"
 AISTUDIO_AZURE_OPENAI_EMBEDDING_DEPLOYMENT="text-embedding-ada-002"
 AISTUDIO_AZURE_OPENAI_EMBEDDING_MODEL_NAME="text-embedding-ada-002"
 AISTUDIO_AZURE_OPENAI_EMBEDDING_DIMENSIONS=1536
 # This field is only necessary if you want to use OCR to scan PDFs in the data source
-AISTUDIO_AZURE_AI_SERVICES_KEY="<your azure ai services key>"
+AISTUDIO_AZURE_AI_SERVICES_KEY="<your-azure-ai-services-key>"
 
 #Prompty requires the following environment variables to be set:
-AZURE_OPENAI_ENDPOINT = "<your-openai-endpoint>"
-AZURE_OPENAI_API_KEY = "<your-openai-key>"
-OPENAI_API_VERSION = "2024-02-15-preview"
+AZURE_OPENAI_ENDPOINT= "<your-azure-openai-endpoint>"
+AZURE_OPENAI_API_KEY= "<your-azure-openai-api-key>"
+AZURE_OPENAI_API_VERSION = "2024-08-01-preview"
+AZURE_OPENAI_EMBEDDINGS_ADA_DEPLOYMENT_NAME = "text-embedding-ada-002"
+AZURE_OPENAI_GPT4_DEPLOYMENT_NAME = "gpt-4"
+AZURE_OPENAI_GPT4o_DEPLOYMENT_NAME = "gpt-4o"
+
+
+SWEDEN_AZURE_OPENAI_ENDPOINT = "<your-azure-openai-endpoint>"
+SWEDEN_AZURE_OPENAI_API_KEY = "<your-azure-openai-api-key>"
+SWEDEN_OPENAI_GPT4_DEPLOYMENT_NAME = "gpt-35-turbo-16k"
+SWEDEN_EMBEDDING_DEPLOYMENT = "text-embedding-ada-002"
+
+# Connection string of Azure Application Insights for Open Telemetry Tracing 
+APPLICATIONINSIGHTS_CONNECTION_STRING = "<your-application-insights-connection-string>"
+SEMANTICKERNEL_EXPERIMENTAL_GENAI_ENABLE_OTEL_DIAGNOSTICS=true
+SEMANTICKERNEL_EXPERIMENTAL_GENAI_ENABLE_OTEL_DIAGNOSTICS_SENSITIVE=true
+
 ```

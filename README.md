@@ -1,45 +1,18 @@
 # Productionalization of GenAI Apps
-Written by: Denise Schlesinger  
-Principal Cloud Solution Architect   
+Written by: Denise Schlesinger, Vlad Feigin, Emanuel Shalmiev 
 Microsoft  
 
 # About this workshop
+This workshop focuses on effectively transitioning Large Language Model (LLM) applications to production.   
+Participants will learn key processes such as synthetic test data generation using Azure OpenAI, optimizing data retrieval with VectorDB, and evaluating LLM apps.  
+Additionally, the workshop covers local testing, monitoring, tracing, and integrating Retrieval-Augmented Generation (RAG) with Azure AI search, as well as testing and automation strategies.
+
+
 ## Agenda
-* Ops for GenAI apps
-* GenAI optimization
-* GenAI completion safety 
-* GenAI completion quality
-* Risk mitigation for GenAI apps: red team, risk assessment 
-* Testing and Automation for GenAI apps	 
-
-## GenAI development challenges
-* Accuracy
-    * Chunking strategy
-    * Consider editing content format for document processing efficiency
-* Cost
-    * Chunk and storage optimization
-    * Cheaper/ Faster model
-    * Latency
-    * Faster model 
-    * Use PTUs
-* Monitor and iterate
-
-## GenAI development stages
-* Identify
-    * Use cases
-    * Requirements 
-    * Infrastructure
-* Pre evaluate 
-    * Chunking strategy 
-    * Embedding models
-    * Vector DB
-    * LLM models
-    * Evaluate prompts
-* Development
-    * [Use prompty](https://github.com/denisa-ms/advanced-genai-apps/tree/main/5-E2E)
-    * [Generate testing data](https://github.com/denisa-ms/advanced-genai-apps/tree/main/1-Preparation)
-* Optimization
-    * [Use reranking or subqueries](https://github.com/denisa-ms/advanced-genai-apps/tree/main/2-Optimization)
-* Deployment
-    * [Testing - use evaluators for completion Quality and safety](https://github.com/denisa-ms/advanced-genai-apps/tree/main/3-Completion%20Quality%20and%20Safety)
-* [Create a RAG with AI search](https://github.com/denisa-ms/advanced-genai-apps/tree/main/6-Rag%20with%20AI%20search)
+* Synthetic test Data generation using Azure OpenAI
+* VectorDB data retrieval optimization
+* LLM apps evaluation
+* Local testing
+* Monitoring and tracing of LLM Apps 
+* RAG with Azure AI search
+* Testing and Automation for LLM apps	 

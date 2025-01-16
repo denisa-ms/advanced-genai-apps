@@ -1,4 +1,4 @@
-# Productionalization of GenAI Apps
+# From Development to Deployment: Mastering LLM Applications with Azure AI
 Written by: Denise Schlesinger, Vlad Feigin, Emanuel Shalmiev 
 Microsoft  
 
@@ -16,3 +16,7 @@ Additionally, the workshop covers local testing, monitoring, tracing, and integr
 * Monitoring and tracing of LLM Apps 
 * RAG with Azure AI search
 * Testing and Automation for LLM apps	 
+
+## Preparation
+Please follow the instructions in the following file:
+[Preparation instructions for the workshop](PREPARATION.md)
